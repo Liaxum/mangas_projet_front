@@ -55,7 +55,9 @@
       "parser": "@babel/eslint-parser",
       "requireConfig": false
     },
-    "rules": {}
+    "rules": {
+      "no-console": 0
+    }
   },
   "browserslist": [
     "> 1%",
