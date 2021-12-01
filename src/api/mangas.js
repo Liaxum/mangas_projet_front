@@ -6,7 +6,6 @@ const ws = createRequest();
 export function getMangas(id) {
   let url = 'https://615b594d4a360f0017a815df.mockapi.io/Mangas';
   if (id) url += `/${id}`;
-  console.log(ws.get(url).then(successHandler).catch(errorHandler));
   return ws.get(url).then(successHandler).catch(errorHandler);
 }
 
