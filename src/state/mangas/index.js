@@ -9,6 +9,7 @@ export const state = {
 
 export const mutations = {
   setMangas(data) {
+    console.log(data);
     state.mangas = data;
   },
   addManga(data) {
@@ -17,8 +18,9 @@ export const mutations = {
 };
 
 export const actions = {
-  async fetchMangas({ commit }, { id = '' }) {
-    return commit('setMangas', await getMangas(id).data);
+  async fetchMangas({ commit }) {
+    const res = await getMangas();
+    return commit('setMangas', res);
   },
   async editManga(context, { id, createdAt, name, price, description, stock, image }) {
     await editManga(id, createdAt, name, price, description, stock, image);

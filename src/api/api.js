@@ -20,7 +20,7 @@ export function errorHandler(error) {
 }
 
 export function successHandler(res) {
-  if (res.statusCode !== 200 || ('success' in res.data && !res.data.success)) {
+  if (res.status !== 200) {
     return Promise.reject(new ApiError(res.data));
   }
   return res.data;

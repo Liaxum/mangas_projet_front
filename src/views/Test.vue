@@ -1,28 +1,11 @@
 <template>
   <div>
     <h1> Liste des mangas </h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>createdAt</th>
-          <th>Price</th>
-          <th>description</th>
-          <th>stocks</th>
-          <th>Image</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item in mangas" :key="item.id">
-          <td> {{item.nama}} </td>
-          <td> {{item.createdAt}} </td>
-          <td> {{item.price}} </td>
-          <td> {{item.description}} </td>
-          <td> {{item.stocks}} </td>
-          <td> {{item.image}} </td>
-        </tr>
-      </tbody>
-    </table>
+    <v-data-table :items="mangas" :headers="[
+    {
+      text: 'name',
+      value: 'name'
+    }]"></v-data-table>
   </div>
 </template>
 <script>
@@ -37,7 +20,6 @@ export default {
 
   data() {
     return {
-      test: this.$t('test'),
     };
   },
   computed: {

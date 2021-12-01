@@ -4,17 +4,15 @@ import { createRequest, errorHandler, successHandler } from './api';
 const ws = createRequest();
 
 export function getMangas(id) {
-  let url = 'Mangas';
+  let url = 'https://615b594d4a360f0017a815df.mockapi.io/Mangas';
   if (id) url += `/${id}`;
+  console.log(ws.get(url).then(successHandler).catch(errorHandler));
   return ws.get(url).then(successHandler).catch(errorHandler);
 }
 
 export function editManga(id, createdAt, name, price, description, stock, image) {
   const params = { createdAt, name, price, description, stock, image };
-  return ws
-    .put(`Mangas/${id}`, params, { headers: { 'Content-Type': 'application/json' } })
-    .then(successHandler)
-    .catch(errorHandler);
+  return ws.put(`Mangas/${id}`, params).then(successHandler).catch(errorHandler);
 }
 
 export function addManga(createdAt, name, price, description, stock, image) {
