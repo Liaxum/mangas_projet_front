@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable object-curly-newline */
 import { getMangas, editManga, addManga, deleteManga } from '../../api/mangas';
 
@@ -8,11 +9,10 @@ export const state = {
 };
 
 export const mutations = {
-  setMangas(data) {
-    console.log(data);
+  setMangas(state, data) {
     state.mangas = data;
   },
-  addManga(data) {
+  addManga(state, data) {
     state.mangas.push(data);
   },
 };
