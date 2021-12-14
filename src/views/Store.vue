@@ -5,8 +5,59 @@
     </v-card-title>
     <v-card-text>
       <v-data-iterator
-        :items="mangasList"
+        :items="filteredItems"
       >
+      <template v-slot:header>
+          <v-toolbar
+            dark
+            class="mb-1"
+          >
+            <v-text-field
+              v-model="search"
+              clearable
+              flat
+              solo-inverted
+              hide-details
+              prepend-inner-icon="mdi-magnify"
+              label="Search"
+            ></v-text-field>
+            <template v-if="$vuetify.breakpoint.mdAndUp">
+              <v-spacer/>
+              <v-select
+                v-model="sortBy"
+                flat
+                solo-inverted
+                hide-details
+                :items="Object.keys(keys)"
+                prepend-inner-icon="mdi-magnify"
+                label="Sort by"
+              ></v-select>
+              <v-spacer></v-spacer>
+              <v-btn-toggle
+                v-model="sortDesc"
+                mandatory
+                disable
+              >
+                <v-btn
+                  large
+                  depressed
+                  color="blue"
+                  :value="false"
+                >
+                  <v-icon>mdi-arrow-up</v-icon>
+                </v-btn>
+                <v-btn
+                  large
+                  depressed
+                  color="blue"
+                  :value="true"
+                >
+                  <v-icon>mdi-arrow-down</v-icon>
+                </v-btn>
+              </v-btn-toggle>
+            </template>
+          </v-toolbar>
+        </template>
         <template v-slot:default="props">
           <v-row>
             <v-col
@@ -65,14 +116,36 @@ export default {
   data() {
     return {
       moreDialog: false,
+      search: '',
       pushItem: '',
+      sortBy: '',
+      sortDesc: '',
       mangasList: [],
+      keys: {
+        Prix: 'Prix',
+        Stock: 'Stock',
+        Nom: 'Nom',
+      },
     };
   },
   computed: {
     ...mapState('mangas', ['mangas']),
-    filteredKeys() {
-      return 'HEy';
+    filteredItems() {
+      const nonSortedItems = this.search
+        ? this.mangasList.filter((el) => el.name.includes(this.search)) : this.mangasList;
+      return nonSortedItems.sort((a, b) => {
+        // eslint-disable-next-line default-case
+        switch (this.sortBy) {
+          case 'Prix':
+            return this.sortDesc ? b.price - a.price : a.price - b.price;
+          case 'Stock':
+            return this.sortDesc ? b.stock - a.stock : a.stock - b.stock;
+          case 'Nom':
+            return this.sortDesc ? b.name.localeCompare(a.name) : a.name.localeCompare(b.name);
+          default:
+            return a - b;
+        }
+      });
     },
   },
   methods: {
