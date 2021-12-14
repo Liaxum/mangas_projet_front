@@ -1,0 +1,82 @@
+<template>
+  <v-dialog
+    v-model="dialogInfo"
+  >
+    <v-card>
+      <v-toolbar>
+        <v-toolbar-title>
+          {{mangas.name}}
+        </v-toolbar-title>
+        <v-spacer/>
+        <v-btn
+          @click="dialogInfo = false"
+          icon
+        >
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </v-toolbar>
+      <v-card-text>
+        <div class="mt-5 mb-5">
+        <v-row class="mb-5">
+          Description : {{mangas.description}}
+        </v-row>
+        <v-row class="mb-5">
+          Date de creation : {{mangas.createdAt}}
+        </v-row>
+        <v-row class="mb-5">
+          Illustration : <a :href="mangas.image">{{mangas.image}}</a>
+        </v-row>
+        <v-row class="mb-5">
+          Prix : {{mangas.price}} €
+        </v-row>
+        <v-row class="mb-5">
+          Stock restant : {{mangas.createdAt}}
+        </v-row>
+        </div>
+      </v-card-text>
+      <v-card-actions>
+        <v-btn @click="addToCart">
+          <v-icon>mdi-cart-plus</v-icon>
+        </v-btn>
+        <v-spacer/>
+        <v-btn @click="dialogInfo = false" text color="error">Fermer</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+</template>
+
+<script>
+export default {
+  name: 'MoreInfoProduit',
+  props: {
+    dialog: { type: Boolean, required: true },
+    mangas: { type: Object, required: true },
+  },
+  computed: {
+    dialogInfo: {
+      get() {
+        return this.dialog;
+      },
+      set(val) {
+        this.$emit('update:dialog', val);
+      },
+    },
+  },
+  methods: {
+    addToCart() {
+      if (window.localStorage.getItem('cart')) {
+        const cart = JSON.parse(window.localStorage.getItem('cart'));
+        cart.push(this.mangas.id);
+        window.localStorage.setItem('cart', JSON.stringify(cart));
+      } else {
+        window.localStorage.setItem('cart', JSON.stringify([this.mangas.id]));
+      }
+      this.dialogInfo = false;
+    },
+  },
+};
+</script>
+
+<style>
+
+</style>

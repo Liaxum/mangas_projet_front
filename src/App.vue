@@ -21,7 +21,7 @@
             <v-icon>mdi-home</v-icon>
           </v-btn>
         </template>
-        <span class="text-caption">Home</span>
+        <span class="text-caption">Accueil</span>
       </v-tooltip>
 
       <v-tooltip bottom>
@@ -34,7 +34,7 @@
             <v-icon>mdi-store</v-icon>
           </v-btn>
         </template>
-        <span>Store</span>
+        <span>Magasin</span>
       </v-tooltip>
       <v-spacer />
       <v-tooltip bottom>
@@ -48,30 +48,6 @@
           </v-btn>
         </template>
         <span>Cart</span>
-      </v-tooltip>
-      <v-tooltip bottom>
-        <template  v-slot:activator="{on, attrs}">
-          <v-btn to="/Account"
-            text
-            v-bind="attrs"
-            v-on="on"
-          >
-            <v-icon>mdi-account</v-icon>
-          </v-btn>
-        </template>
-        <span>Account</span>
-      </v-tooltip>
-      <v-tooltip bottom>
-        <template  v-slot:activator="{on, attrs}">
-          <v-btn to="/logout"
-            text
-            v-bind="attrs"
-            v-on="on"
-          >
-            <v-icon>mdi-logout</v-icon>
-          </v-btn>
-        </template>
-        <span>Disconnect</span>
       </v-tooltip>
     </v-app-bar>
     <v-main>

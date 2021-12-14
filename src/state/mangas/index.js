@@ -18,8 +18,8 @@ export const mutations = {
 };
 
 export const actions = {
-  async fetchMangas({ commit }) {
-    const res = await getMangas();
+  async fetchMangas({ commit }, id = '') {
+    const res = await getMangas(id);
     return commit('setMangas', res);
   },
   async editManga(context, { id, createdAt, name, price, description, stock, image }) {
