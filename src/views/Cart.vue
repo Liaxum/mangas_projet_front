@@ -33,7 +33,7 @@
                     {{ $t('cart.stock', {stock: item.stock}) }}
                   </v-list-item>
                   <v-list-item-action>
-                    <v-btn @click="delete1Item(item)" color="red">
+                    <v-btn @click="delete1Item(item)" color="error">
                       <v-icon>mdi-minus</v-icon>
                     </v-btn>
                   </v-list-item-action>
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -71,25 +71,24 @@ export default {
   },
   methods: {
     ...mapActions('mangas', ['fetchMangas']),
+    ...mapMutations('cart', ['removeCartNumber', 'setCartNumber']),
     deleteCart() {
       if (window.localStorage.getItem('cart')) {
         window.localStorage.removeItem('cart');
       }
       this.mangasCart = [];
+      this.setCartNumber(0);
     },
     delete1Item(item) {
       if (window.localStorage.getItem('cart')) {
-        window.localStorage.setItem('cart', JSON.stringify(JSON.parse(window.localStorage.getItem('cart')).filter((el) => el !== item.id)));
+        window.localStorage.setItem('cart', JSON.stringify(JSON.parse(window.localStorage.getItem('cart')).filter((el) => el.id !== item.id)));
       }
+      this.removeCartNumber();
       this.mangasCart = this.mangasCart.filter((el) => el.id !== item.id);
     },
     async updateCart() {
       if (window.localStorage.getItem('cart')) {
-        const cart = JSON.parse(window.localStorage.getItem('cart'));
-        cart.forEach(async (id) => {
-          await this.fetchMangas(id);
-          this.mangasCart.push(this.mangas);
-        });
+        this.mangasCart = JSON.parse(window.localStorage.getItem('cart'));
       }
     },
   },

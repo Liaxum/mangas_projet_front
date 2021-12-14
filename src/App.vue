@@ -44,7 +44,14 @@
             v-bind="attrs"
             v-on="on"
           >
-            <v-icon>mdi-cart</v-icon>
+            <v-badge
+              v-if="cartNumber"
+              color="green"
+              :content="cartNumber"
+            >
+              <v-icon>mdi-cart</v-icon>
+            </v-badge>
+            <v-icon v-else>mdi-cart</v-icon>
           </v-btn>
         </template>
         <span> {{$t('navbar.cartTooltip')}} </span>
@@ -57,12 +64,22 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex';
 
 export default {
   name: 'App',
-
-  data: () => ({
-    //
-  }),
+  created() {
+    this.setCartNumber(JSON.parse(window.localStorage.getItem('cart')).length);
+  },
+  data() {
+    return {
+    };
+  },
+  computed: {
+    ...mapState('cart', ['cartNumber']),
+  },
+  methods: {
+    ...mapMutations('cart', ['setCartNumber']),
+  },
 };
 </script>

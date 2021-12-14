@@ -46,6 +46,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   name: 'MoreInfoProduit',
   props: {
@@ -63,15 +65,17 @@ export default {
     },
   },
   methods: {
+    ...mapMutations('cart', ['addCartNumber']),
     addToCart() {
       if (window.localStorage.getItem('cart')) {
         const cart = JSON.parse(window.localStorage.getItem('cart'));
-        cart.push(this.mangas.id);
+        cart.push(this.mangas);
         window.localStorage.setItem('cart', JSON.stringify(cart));
       } else {
         window.localStorage.setItem('cart', JSON.stringify([this.mangas.id]));
       }
       this.dialogInfo = false;
+      this.addCartNumber();
     },
   },
 };
