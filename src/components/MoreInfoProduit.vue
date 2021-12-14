@@ -35,7 +35,7 @@
         </div>
       </v-card-text>
       <v-card-actions>
-        <v-btn @click="addToCart">
+        <v-btn @click="addToCart" color="primary">
           <v-icon>mdi-cart-plus</v-icon>
         </v-btn>
         <v-spacer/>

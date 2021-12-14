@@ -83,7 +83,7 @@
                     {{ $t('store.stock', {stock: item.stock}) }}
                   </v-list-item>
                   <v-list-item-action>
-                    <v-btn @click="moreDialog = true; pushItem= item">
+                    <v-btn @click="moreDialog = true; pushItem= item" color="primary">
                       <v-icon>mdi-plus</v-icon>
                     </v-btn>
                   </v-list-item-action>

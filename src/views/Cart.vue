@@ -7,6 +7,7 @@
 
     <v-data-iterator
         :items="mangasCart"
+        hide-default-footer
       >
         <template v-slot:default="props">
           <v-row>
