@@ -72,7 +72,7 @@ export default {
         cart.push(this.mangas);
         window.localStorage.setItem('cart', JSON.stringify(cart));
       } else {
-        window.localStorage.setItem('cart', JSON.stringify([this.mangas.id]));
+        window.localStorage.setItem('cart', JSON.stringify([this.mangas]));
       }
       this.dialogInfo = false;
       this.addCartNumber();

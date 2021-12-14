@@ -69,7 +69,7 @@ import { mapMutations, mapState } from 'vuex';
 export default {
   name: 'App',
   created() {
-    this.setCartNumber(JSON.parse(window.localStorage.getItem('cart')).length);
+    if (window.localStorage.getItem('cart')) { this.setCartNumber(JSON.parse(window.localStorage.getItem('cart')).length); }
   },
   data() {
     return {
