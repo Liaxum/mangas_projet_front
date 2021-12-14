@@ -1,3 +1,26 @@
 {
-  "message": "hello i18n !!"
+  "mainTitle": "Mangas Kun",
+  "navbar": {
+    "homeTooltip": "Accueil",
+    "storeTooltip": "Magasin",
+    "cartTooltip": "Panier"
+  },
+  "cart": {
+    "title": "Votre panier",
+    "price": "Prix : {price} €",
+    "stock": "Il reste {stock} mangas de ce type"
+  },
+  "store": {
+    "title": "Magasin",
+    "price": "Prix : {price} €",
+    "stock": "Il reste {stock} mangas de ce type",
+    "dialog": {
+      "description": "Description : {description}",
+      "date": "Date de creation : {date}",
+      "img": "Illustration :"
+    }
+  },
+  "btn": {
+    "close": "Fermer"
+  }
 }

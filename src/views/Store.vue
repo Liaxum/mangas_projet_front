@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      Liste des Mangas
+      {{ $t('store.title') }}
     </v-card-title>
     <v-card-text>
       <v-data-iterator
@@ -17,7 +17,7 @@
               md="4"
               lg="3"
             >
-              <v-card>
+              <v-card elevation="10">
                 <v-card-title class="subheading font-weight-bold">
                   {{ item.name }}
                 </v-card-title>
@@ -26,10 +26,10 @@
 
                 <v-list dense>
                   <v-list-item>
-                    Prix : {{item.price}} €
+                    {{ $t('store.price', {price: item.price}) }}
                   </v-list-item>
                   <v-list-item>
-                    Il reste {{ item.stock}}
+                    {{ $t('store.stock', {stock: item.stock}) }}
                   </v-list-item>
                   <v-list-item-action>
                     <v-btn @click="moreDialog = true; pushItem= item">
@@ -76,7 +76,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions('mangas', ['fetchMangas']),
+    ...mapActions('mangas', ['fetchMangas', 'editMangas']),
   },
   components: {
     MoreInfoProduit,

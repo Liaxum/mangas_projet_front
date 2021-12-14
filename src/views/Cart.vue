@@ -1,8 +1,10 @@
 <template>
   <v-card>
     <v-card-title>
-      Votre panier
+      {{$t('cart.title')}}
     </v-card-title>
+    <v-card-text>
+
     <v-data-iterator
         :items="mangasCart"
       >
@@ -16,7 +18,7 @@
               md="4"
               lg="3"
             >
-              <v-card>
+              <v-card elevation="10">
                 <v-card-title class="subheading font-weight-bold">
                   {{ item.name }}
                 </v-card-title>
@@ -25,10 +27,10 @@
 
                 <v-list dense>
                   <v-list-item>
-                    Prix : {{item.price}} €
+                    {{ $t('cart.price', {price: item.price}) }}
                   </v-list-item>
                   <v-list-item>
-                    Il reste {{ item.stock}}
+                    {{ $t('cart.stock', {stock: item.stock}) }}
                   </v-list-item>
                   <v-list-item-action>
                     <v-btn @click="delete1Item(item)" color="red">
@@ -41,6 +43,7 @@
           </v-row>
         </template>
       </v-data-iterator>
+    </v-card-text>
       <v-card-actions>
         <v-btn @click="deleteCart" color="success">Payer</v-btn>
         <v-spacer/>

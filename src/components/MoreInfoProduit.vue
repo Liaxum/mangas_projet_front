@@ -18,19 +18,19 @@
       <v-card-text>
         <div class="mt-5 mb-5">
         <v-row class="mb-5">
-          Description : {{mangas.description}}
+          {{ $t('store.dialog.description', {description: mangas.description}) }}
         </v-row>
         <v-row class="mb-5">
-          Date de creation : {{mangas.createdAt}}
+          {{ $t('store.dialog.date', {date: mangas.createdAt}) }}
         </v-row>
         <v-row class="mb-5">
-          Illustration : <a :href="mangas.image">{{mangas.image}}</a>
+          {{$t('store.dialog.img')}} <a :href="mangas.image">{{mangas.image}}</a>
         </v-row>
         <v-row class="mb-5">
-          Prix : {{mangas.price}} €
+          {{$t('store.price', {price: mangas.price})}}
         </v-row>
         <v-row class="mb-5">
-          Stock restant : {{mangas.createdAt}}
+          {{ $t('store.stock', {stock: mangas.stock}) }}
         </v-row>
         </div>
       </v-card-text>
@@ -39,7 +39,7 @@
           <v-icon>mdi-cart-plus</v-icon>
         </v-btn>
         <v-spacer/>
-        <v-btn @click="dialogInfo = false" text color="error">Fermer</v-btn>
+        <v-btn @click="dialogInfo = false" text color="error">{{$t('btn.close')}}</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

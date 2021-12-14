@@ -1,8 +1,10 @@
 <template>
   <v-card fluid>
     <v-parallax
+      class="v-parallax-image"
       dark
       src="../assets/home_parrallax.png"
+      height="1500"
     >
     <v-row
       align="center"
@@ -12,8 +14,7 @@
         class="text-center"
         cols="12"
       >
-        <h1 class="text-h4 font-weight-black mb-4">Mangas Kun</h1>
-        <h4 class="subheading"></h4>
+        <h1 class="text-h4 font-weight-black mb-4">{{$t('mainTitle')}}</h1>
       </v-col>
     </v-row>
     </v-parallax>
@@ -25,7 +26,3 @@ export default {
   name: 'HomePage',
 };
 </script>
-
-<style>
-
-</style>

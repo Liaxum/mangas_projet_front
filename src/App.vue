@@ -21,7 +21,7 @@
             <v-icon>mdi-home</v-icon>
           </v-btn>
         </template>
-        <span class="text-caption">Accueil</span>
+        <span class="text-caption">{{$t('navbar.homeTooltip')}}</span>
       </v-tooltip>
 
       <v-tooltip bottom>
@@ -34,7 +34,7 @@
             <v-icon>mdi-store</v-icon>
           </v-btn>
         </template>
-        <span>Magasin</span>
+        <span> {{$t('navbar.storeTooltip')}}</span>
       </v-tooltip>
       <v-spacer />
       <v-tooltip bottom>
@@ -47,7 +47,7 @@
             <v-icon>mdi-cart</v-icon>
           </v-btn>
         </template>
-        <span>Cart</span>
+        <span> {{$t('navbar.cartTooltip')}} </span>
       </v-tooltip>
     </v-app-bar>
     <v-main>
