@@ -21,7 +21,7 @@
           {{ $t('store.dialog.description', {description: mangas.description}) }}
         </v-row>
         <v-row class="mb-5">
-          {{ $t('store.dialog.date', {date: mangas.createdAt}) }}
+          {{ $t('store.dialog.date', {date: formatDate}) }}
         </v-row>
         <v-row class="mb-5">
           {{$t('store.dialog.img')}} <a :href="mangas.image">{{mangas.image}}</a>
@@ -47,6 +47,8 @@
 
 <script>
 import { mapMutations } from 'vuex';
+import moment from 'moment';
+import 'moment/locale/fr';
 
 export default {
   name: 'MoreInfoProduit',
@@ -62,6 +64,10 @@ export default {
       set(val) {
         this.$emit('update:dialog', val);
       },
+    },
+    formatDate() {
+      moment().local('fr');
+      return moment(this.mangas.createdAt).format('LL');
     },
   },
   methods: {
