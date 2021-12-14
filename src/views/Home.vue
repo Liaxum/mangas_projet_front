@@ -4,7 +4,7 @@
       class="v-parallax-image"
       dark
       src="../assets/home_parrallax.png"
-      height="1500"
+      height="500"
     >
     <v-row
       align="center"
